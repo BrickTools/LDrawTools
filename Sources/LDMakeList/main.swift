@@ -2,5 +2,5 @@ import Foundation
 
 let arguments = CommandLine.arguments
 
-let commandLine = Command()
-commandLine.run(with: arguments)
+let app = Application()
+app.run(with: arguments)

@@ -3,7 +3,7 @@ import Foundation
 typealias PartSort = (Part, Part) -> Bool
 typealias PartFilter = (Part) -> Bool
 
-class Command {
+struct Application {
     private func showHelp() -> Never {
         print("USAGE: LDMakeList [options]")
         print("")
