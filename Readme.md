@@ -34,7 +34,7 @@ OPTIONS:
 Sorting by file name (n) and ignoring parts that moved and parts that start with ~, _, and =.
 
 ```
-$ LDMakeList -n -m -~ -_ -= | head
+$ LDMakeList -n -m -~ -_ -=
 003238a.dat                Sticker Minifig Shield Triangular with Crown on DkPink B/ground
 003238b.dat                Sticker Minifig Shield Triangular with Green Chevrons on DkGray
 003238c.dat                Sticker Minifig Shield Triangular with White Maltese Cross
@@ -44,12 +44,13 @@ $ LDMakeList -n -m -~ -_ -= | head
 003238g.dat                Sticker Minifig Vest w/ Shield with White Maltese Cross/DkGray
 003238h.dat                Sticker Minifig Vest with Yellow Trefoils on Blue Background
 003238i.dat                Sticker Flag with Crown on Dark-Pink
+...
 ```
 
 Sorting by description (d) and ignoring parts that moved and parts that start with ~, _, and =.
 
 ```
-$ LDMakeList -d -m -~ -_ -= | head
+$ LDMakeList -d -m -~ -_ -=
 30103.dat                  Animal Bat
 13665.dat                  Animal Bird Crow
 2546.dat                   Animal Bird Parrot
@@ -59,12 +60,13 @@ $ LDMakeList -d -m -~ -_ -= | head
 6251.dat                   Animal Cat Crouching
 87695.dat                  Animal Cattlehorns
 95342.dat                  Animal Chicken
+...
 ```
 
 Exporting list of parts as JSON, sorting by description (d) and ignoring parts that moved and parts that start with ~, _, and =.
 
 ```
-$ LDMakeList -j -d -m -= -~ -_ | head -n 20
+$ LDMakeList -j -d -m -= -~ -_
 [
   {
     "description" : "Animal Bat",
@@ -85,6 +87,7 @@ $ LDMakeList -j -d -m -= -~ -_ | head -n 20
   {
     "description" : "Animal Bird Wing 9L with Stylized Feathers",
     "fileName" : "11091.dat"
+...
 ```
 
 Redirecting the output to file
