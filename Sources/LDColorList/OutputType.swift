@@ -4,13 +4,13 @@ import LDrawKit
 enum OutputType {
     case text, json
 
-    func toString(parts: [Part]) -> String {
+    func toString(colors: [Color]) -> String {
         switch self {
         case .text:
-            return parts.reduce("", toList)
+            return colors.reduce("", toList)
 
         case .json:
-            let array = parts.map(toDictionary)
+            let array = colors.map(toDictionary)
 
             guard
                 let data = try? JSONSerialization.data(withJSONObject: array, options: .prettyPrinted),
