@@ -33,7 +33,7 @@ func byFileName(part: Part, anotherPart: Part) -> Bool {
 /// MARK: Reduce
 
 func toList(original: String, part: Part) -> String {
-    return original + "\n" + part.fileName.padding(toLength: 27, withPad: " ", startingAt: 0) + part.description
+    return original + part.fileName.padding(toLength: 27, withPad: " ", startingAt: 0) + part.description + "\n"
 }
 
 func applyFilter(original: [Part], filter: PartFilter) -> [Part] {
