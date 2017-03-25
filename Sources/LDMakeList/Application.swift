@@ -1,4 +1,5 @@
 import Foundation
+import LDrawKit
 
 typealias PartSort = (Part, Part) -> Bool
 typealias PartFilter = (Part) -> Bool
@@ -65,7 +66,6 @@ struct Application {
         parts = sortFunctions.reduce(parts, applySort)
 
         let output = outputType.toString(parts: parts)
-
         print(output)
     }
 }
