@@ -1,16 +1,20 @@
-# LDMakeList
+# LDrawTools
 
-Simple LDMakeList implementation in Swift - with JSON support - to create a list of [LDraw parts](http://www.ldraw.org/parts/latest-parts.html).
+LDrawTools is a Swift Package that includes command line tools to list LDraw parts and colors. It includes ``LDMakeList`` and ``LDColorList``.
 
 ## Building from Source
 
 ```
-$ git clone https://github.com/ornithocoder/LDMakeList.git
-$ cd LDMakeList
+$ git clone https://github.com/ornithocoder/LDrawTools.git
+$ cd LDrawTools
 $ swift build
 ```
 
-## Using it
+## LDMakeList
+
+Simple LDMakeList implementation in Swift - with JSON support - to create a list of [LDraw parts](http://www.ldraw.org/parts/latest-parts.html).
+
+### Using it
 
 Copy the LDMakeList binary to LDraw's root directory before running it.
 
@@ -31,7 +35,7 @@ OPTIONS:
 
 ### Examples
 
-Sorting by file name (n) and ignoring parts that moved and parts that start with ~, _, and =.
+Sorting by file name (``-n``) and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
 $ LDMakeList -n -m -~ -_ -=
@@ -47,7 +51,7 @@ $ LDMakeList -n -m -~ -_ -=
 ...
 ```
 
-Sorting by description (d) and ignoring parts that moved and parts that start with ~, _, and =.
+Sorting by description (``-d``) and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
 $ LDMakeList -d -m -~ -_ -=
@@ -63,7 +67,7 @@ $ LDMakeList -d -m -~ -_ -=
 ...
 ```
 
-Exporting list of parts as JSON, sorting by description (d) and ignoring parts that moved and parts that start with ~, _, and =.
+Exporting list of parts as JSON (``-j``), sorting by description (``-d``) and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
 $ LDMakeList -j -d -m -= -~ -_
@@ -95,6 +99,71 @@ Redirecting the output to file
 ```
 $ LDMakeList -d -m -~ -_ -= > parts.lst       # save as text
 $ LDMakeList -d -m -j -~ -_ -= > parts.json   # save as JSON
+```
+
+## LDColorList
+
+Creates a list of [LDraw colors](http://www.ldraw.org/article/547.html).
+
+### Using it
+
+Copy the LDColorList binary to LDraw's root directory before running it.
+
+```
+$ LDColorList -h
+USAGE: LDColorList [options]
+
+OPTIONS:
+  -d	Sort by description
+  -c	Sort by code
+  -j	Print as JSON
+  -h/-?	Show this help
+```
+
+### Examples
+
+Sorting colors by description (``-d``).
+
+```
+$ LDColorList -d
+118       Aqua
+0         Black
+1         Blue
+89        Blue Violet
+10        Bright Green
+212       Bright Light Blue
+191       Bright Light Orange
+226       Bright Light Yellow
+29        Bright Pink
+6         Brown
+...
+```
+
+Exporting colors as JSON (``-j``).
+
+```
+$ LDColorList -j
+[
+  {
+    "name" : "Black",
+    "value" : "#05131D",
+    "alpha" : null,
+    "luminance" : null,
+    "code" : 0,
+    "edge" : "#595959"
+  },
+  {
+    "name" : "Blue",
+    "value" : "#0055BF",
+    "alpha" : null,
+    "luminance" : null,
+    "code" : 1,
+    "edge" : "#333333"
+  },
+  {
+    "name" : "Green",
+    "value" : "#257A3E",
+...
 ```
 
 # License
