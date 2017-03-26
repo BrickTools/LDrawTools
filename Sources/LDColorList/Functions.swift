@@ -1,7 +1,7 @@
 import Foundation
 import LDrawKit
 
-/// MARK: Map
+// MARK: Map
 
 func toDictionary(color: Color) -> [String : Any?] {
     return [
@@ -14,7 +14,7 @@ func toDictionary(color: Color) -> [String : Any?] {
     ]
 }
 
-/// MARK: Sort
+// MARK: Sort
 
 func byDescription(color: Color, anotherColor: Color) -> Bool {
     return color.name < anotherColor.name
@@ -24,7 +24,7 @@ func byCode(color: Color, anotherColor: Color) -> Bool {
     return color.code < anotherColor.code
 }
 
-/// MARK: Reduce
+// MARK: Reduce
 
 func toList(original: String, color: Color) -> String {
     return original

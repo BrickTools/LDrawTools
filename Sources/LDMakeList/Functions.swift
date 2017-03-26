@@ -1,13 +1,13 @@
 import Foundation
 import LDrawKit
 
-/// MARK: Map
+// MARK: Map
 
 func toDictionary(part: Part) -> [String : String] {
     return ["fileName": part.fileName, "description": part.description]
 }
 
-/// MARK: Filter
+// MARK: Filter
 
 func hasNotMoved(part: Part) -> Bool {
     return !part.description.lowercased().contains("moved to")
@@ -17,7 +17,7 @@ func noPrefix(string: String) -> (Part) -> Bool {
     return { part in !part.description.hasPrefix(string) }
 }
 
-/// MARK: Sort
+// MARK: Sort
 
 func byDescription(part: Part, anotherPart: Part) -> Bool {
     return part.description < anotherPart.description
@@ -27,7 +27,7 @@ func byFileName(part: Part, anotherPart: Part) -> Bool {
     return part.fileName < anotherPart.fileName
 }
 
-/// MARK: Reduce
+// MARK: Reduce
 
 func toList(original: String, part: Part) -> String {
     return original
