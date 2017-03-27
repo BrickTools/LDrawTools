@@ -23,19 +23,19 @@ $ LDMakeList -h
 USAGE: LDMakeList [options]
 
 OPTIONS:
-  -d	Sort by description
-  -n	Sort by file name
-  -m	Ignore parts that moved (~ Moved to...)
-  -~	Ignore parts that start with tilde (~)
-  -_	Ignore parts that start with _
-  -=	Ignore parts that start with =
-  -j	Print as JSON
-  -h/-?	Show this help
+-d      Sort by description
+-n      Sort by file name
+-m      Ignore parts that moved (~ Moved to...)
+-~      Ignore parts that start with tilde (~)
+-_      Ignore parts that start with _
+-=      Ignore parts that start with =
+--type  Output format: either json or list
+-h      Show this help
 ```
 
 ### Examples
 
-Sorting by file name (``-n``) and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
+Sorting by file name and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
 $ LDMakeList -n -m -~ -_ -=
@@ -51,7 +51,7 @@ $ LDMakeList -n -m -~ -_ -=
 ...
 ```
 
-Sorting by description (``-d``) and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
+Sorting by description and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
 $ LDMakeList -d -m -~ -_ -=
@@ -67,10 +67,10 @@ $ LDMakeList -d -m -~ -_ -=
 ...
 ```
 
-Exporting list of parts as JSON (``-j``), sorting by description (``-d``) and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
+Exporting list of parts as JSON, sorting by description and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
-$ LDMakeList -j -d -m -= -~ -_
+$ LDMakeList --type json -d -m -= -~ -_
 [
   {
     "description" : "Animal Bat",
@@ -97,8 +97,8 @@ $ LDMakeList -j -d -m -= -~ -_
 Redirecting the output to file
 
 ```
-$ LDMakeList -d -m -~ -_ -= > parts.lst       # save as text
-$ LDMakeList -d -m -j -~ -_ -= > parts.json   # save as JSON
+$ LDMakeList -d -m -~ -_ -= > parts.lst               # save as list
+$ LDMakeList -d -m --type json -~ -_ -= > parts.json  # save as JSON
 ```
 
 ## LDColorList
@@ -114,15 +114,15 @@ $ LDColorList -h
 USAGE: LDColorList [options]
 
 OPTIONS:
-  -d	Sort by description
-  -c	Sort by code
-  -j	Print as JSON
-  -h/-?	Show this help
+-d      Sort by description
+-c      Sort by code
+--type  Output format: json or list
+-h      Show this help
 ```
 
 ### Examples
 
-Sorting colors by description (``-d``).
+Sorting colors by description.
 
 ```
 $ LDColorList -d
@@ -139,10 +139,10 @@ $ LDColorList -d
 ...
 ```
 
-Exporting colors as JSON (``-j``).
+Exporting colors as JSON.
 
 ```
-$ LDColorList -j
+$ LDColorList --type json
 [
   {
     "name" : "Black",
@@ -164,6 +164,13 @@ $ LDColorList -j
     "name" : "Green",
     "value" : "#257A3E",
 ...
+```
+
+Redirecting the output to file
+
+```
+$ LDColorList -c > colors.lst               # save as list
+$ LDColorList -d --type json > colors.json  # save as JSON
 ```
 
 # License

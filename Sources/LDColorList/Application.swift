@@ -1,42 +1,49 @@
 import Foundation
 import LDrawKit
+import SimpleCommandLineKit
 
 typealias ColorSort = (Color, Color) -> Bool
 
 struct Application {
+    private let parser: CommandLineParser
+
+    init() {
+        let options = [
+            CommandLineOption(name: "-d", description: "Sort by description"),
+            CommandLineOption(name: "-c", description: "Sort by code"),
+            CommandLineOption(name: "--type", description: "Output format: json or list", numberOfParameters: 1),
+            CommandLineOption(name: "-h", description: "Show this help")
+        ]
+
+        parser = CommandLineParser(options: options)
+    }
+
     private func showHelp() -> Never {
         print("USAGE: LDColorList [options]")
         print("")
-        print("OPTIONS:")
-        print("  -d\tSort by description")
-        print("  -c\tSort by code")
-        print("  -j\tPrint as JSON")
-        print("  -h/-?\tShow this help")
+        print(parser.helpOptions())
         exit(0)
     }
 
     func run(with arguments: [String]) {
         var sortFunctions: [ColorSort] = []
-        var outputType: OutputType = .text
+        var outputType: OutputType = .list
 
-        for argument in arguments {
-            switch argument {
-            case "-d":
+        parser.run(arguments: arguments) { option in
+            switch option {
+            case .success("-d", _):
                 sortFunctions.append(byDescription)
-
-            case "-c":
+            case .success("-c", _):
                 sortFunctions.append(byCode)
-
-            case "-j":
-                outputType = .json
-
-            case "-h":
+            case .success("--type", let parameters):
+                outputType = (parameters.first == "json") ? .json : .list
+            case .success("-h", _):
                 showHelp()
-
-            case "-?":
+            case .failure(let commandName):
+                print("\(commandName) doesn't have the correct number of arguments")
                 showHelp()
-
             default:
+                showHelp()
                 break
             }
         }

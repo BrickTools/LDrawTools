@@ -2,11 +2,11 @@ import Foundation
 import LDrawKit
 
 enum OutputType {
-    case text, json
+    case list, json
 
     func toString(parts: [Part]) -> String {
         switch self {
-        case .text:
+        case .list:
             return parts.reduce("", toList)
 
         case .json:

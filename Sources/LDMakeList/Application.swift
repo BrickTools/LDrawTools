@@ -1,60 +1,63 @@
 import Foundation
 import LDrawKit
+import SimpleCommandLineKit
 
 typealias PartSort = (Part, Part) -> Bool
 typealias PartFilter = (Part) -> Bool
 
 struct Application {
+    private let parser: CommandLineParser
+
+    init() {
+        let options = [
+            CommandLineOption(name: "-d", description: "Sort by description"),
+            CommandLineOption(name: "-n", description: "Sort by file name"),
+            CommandLineOption(name: "-m", description: "Ignore parts that moved (~ Moved to...)"),
+            CommandLineOption(name: "-~", description: "Ignore parts that start with tilde (~)"),
+            CommandLineOption(name: "-_", description: "Ignore parts that start with _"),
+            CommandLineOption(name: "-=", description: "Ignore parts that start with ="),
+            CommandLineOption(name: "--type", description: "Output format: either json or list", numberOfParameters: 1),
+            CommandLineOption(name: "-h", description: "Show this help")
+        ]
+
+        parser = CommandLineParser(options: options)
+    }
+
     private func showHelp() -> Never {
         print("USAGE: LDMakeList [options]")
         print("")
-        print("OPTIONS:")
-        print("  -d\tSort by description")
-        print("  -n\tSort by file name")
-        print("  -m\tIgnore parts that moved (~ Moved to...)")
-        print("  -~\tIgnore parts that start with tilde (~)")
-        print("  -_\tIgnore parts that start with _")
-        print("  -=\tIgnore parts that start with =")
-        print("  -j\tPrint as JSON")
-        print("  -h/-?\tShow this help")
+        print(parser.helpOptions())
         exit(0)
     }
 
     func run(with arguments: [String]) {
         var sortFunctions: [PartSort] = []
         var filterFunctions: [PartFilter] = []
-        var outputType: OutputType = .text
+        var outputType: OutputType = .list
 
-        for argument in arguments {
-            switch argument {
-            case "-d":
+        parser.run(arguments: arguments) { option in
+            switch option {
+            case .success("-d", _):
                 sortFunctions.append(byDescription)
-
-            case "-n":
+            case .success("-n", _):
                 sortFunctions.append(byFileName)
-
-            case "-m":
+            case .success("-m", _):
                 filterFunctions.append(hasNotMoved)
-
-            case "-~":
+            case .success("-~", _):
                 filterFunctions.append(noPrefix(string: "~"))
-
-            case "-_":
+            case .success("-_", _):
                 filterFunctions.append(noPrefix(string: "_"))
-
-            case "-=":
+            case .success("-=", _):
                 filterFunctions.append(noPrefix(string: "="))
-
-            case "-j":
-                outputType = .json
-
-            case "-h":
+            case .success("--type", let parameters):
+                outputType = (parameters.first == "json") ? .json : .list
+            case .success("-h", _):
                 showHelp()
-
-            case "-?":
+            case .failure(let commandName):
+                print("\(commandName) doesn't have the correct number of arguments")
                 showHelp()
-
             default:
+                showHelp()
                 break
             }
         }
