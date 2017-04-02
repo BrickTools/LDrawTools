@@ -53,7 +53,7 @@ struct Application {
 
         colors = sortFunctions.reduce(colors, applySort)
 
-        let output = outputType.toString(colors: colors)
+        let output = outputType.convert(colors)
         print(output)
     }
 }

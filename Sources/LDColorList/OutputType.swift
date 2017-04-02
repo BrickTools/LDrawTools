@@ -4,7 +4,7 @@ import LDrawKit
 enum OutputType {
     case list, json
 
-    func toString(colors: [Color]) -> String {
+    func convert(_ colors: [Color]) -> String {
         switch self {
         case .list:
             return colors.reduce("", toList)

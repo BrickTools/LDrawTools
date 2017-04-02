@@ -68,7 +68,7 @@ struct Application {
         parts = filterFunctions.reduce(parts, applyFilter)
         parts = sortFunctions.reduce(parts, applySort)
 
-        let output = outputType.toString(parts: parts)
+        let output = outputType.convert(parts)
         print(output)
     }
 }
