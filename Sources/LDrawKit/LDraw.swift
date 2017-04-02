@@ -32,7 +32,7 @@ public struct LDraw {
                 }
             }
         }
-        
+
         return colors
     }
 }
