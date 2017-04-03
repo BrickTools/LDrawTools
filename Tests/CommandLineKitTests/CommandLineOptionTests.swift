@@ -1,5 +1,5 @@
 import XCTest
-@testable import SimpleCommandLineKit
+@testable import CommandLineKit
 
 class CommandLineOptionTests: XCTestCase {
     func testCommandLineOption() {

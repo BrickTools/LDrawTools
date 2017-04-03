@@ -1,6 +1,6 @@
 import Foundation
 import LDrawKit
-import SimpleCommandLineKit
+import CommandLineKit
 
 typealias ColorSort = (Color, Color) -> Bool
 

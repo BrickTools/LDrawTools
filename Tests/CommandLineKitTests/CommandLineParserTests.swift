@@ -1,5 +1,5 @@
 import XCTest
-@testable import SimpleCommandLineKit
+@testable import CommandLineKit
 
 class CommandLineParserTests: XCTestCase {
     var parser: CommandLineParser?
