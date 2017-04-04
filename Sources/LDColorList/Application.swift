@@ -24,7 +24,7 @@ struct Application {
         print("USAGE: LDColorList [options]")
         print("")
         print(parser.helpOptions())
-        exit(0)
+        exit(EXIT_FAILURE)
     }
 
     func run(with arguments: [String]) {
