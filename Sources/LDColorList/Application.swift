@@ -20,13 +20,6 @@ struct Application {
         parser = CommandLineParser(options: options)
     }
 
-    private func showHelp() -> Never {
-        print("USAGE: LDColorList [options]")
-        print("")
-        print(parser.helpOptions())
-        exit(EXIT_FAILURE)
-    }
-
     func run(with arguments: [String]) {
         var sortFunctions: [ColorSort] = []
         var filterFunctions: [ColorFilter] = []
@@ -62,5 +55,12 @@ struct Application {
 
         let output = outputType.convert(colors)
         print(output)
+    }
+
+    private func showHelp() -> Never {
+        print("Usage: LDColorList [options]")
+        print("")
+        print(parser.helpOptions()!)
+        exit(EXIT_SUCCESS)
     }
 }

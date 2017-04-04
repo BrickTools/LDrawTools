@@ -1,8 +1,18 @@
 import Foundation
 
+// MARK: Filter
+
+func byOptionNameLength(option: CommandLineOption, anotherOption: CommandLineOption) -> Bool {
+    return option.name.characters.count < anotherOption.name.characters.count
+}
+
+// MARK: Sort
+
 func hasName(_ name: String) -> (CommandLineOption) -> Bool {
     return { option in option.name == name }
 }
+
+// MARK: Reduce
 
 func toCommandLineValues(matching names: [String]) -> ([CommandLineValue], String) -> [CommandLineValue] {
     return { initial, element in
@@ -20,6 +30,8 @@ func toCommandLineValues(matching names: [String]) -> ([CommandLineValue], Strin
         }
     }
 }
+
+// MARK: Flat-Map
 
 func toCommandLineParsedOptions(matching options: [CommandLineOption]) -> (CommandLineValue) -> CommandLineParsedOption? {
     return { commandLineValue in

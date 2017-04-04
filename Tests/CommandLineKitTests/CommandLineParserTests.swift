@@ -68,13 +68,19 @@ class CommandLineParserTests: XCTestCase {
         XCTAssertEqual(passedCommandName, "--defg")
     }
 
-    func testHelp() {
-        let expectedHelp = "OPTIONS:\n"
+    func testHelpWithValidOptions() {
+        let expectedHelp = "Options:\n"
             + "-a      Option a\n"
             + "-b      Option b\n"
             + "-c      Option c\n"
             + "--defg  Option defg"
 
         XCTAssertEqual(parser?.helpOptions(), expectedHelp)
+    }
+
+    func testHelpWithoutOptions() {
+        parser = CommandLineParser(options: [])
+
+        XCTAssertNil(parser?.helpOptions())
     }
 }

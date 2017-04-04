@@ -23,13 +23,6 @@ struct Application {
         parser = CommandLineParser(options: options)
     }
 
-    private func showHelp() -> Never {
-        print("USAGE: LDMakeList [options]")
-        print("")
-        print(parser.helpOptions())
-        exit(EXIT_FAILURE)
-    }
-
     func run(with arguments: [String]) {
         var sortFunctions: [PartSort] = []
         var filterFunctions: [PartFilter] = []
@@ -70,5 +63,12 @@ struct Application {
 
         let output = outputType.convert(parts)
         print(output)
+    }
+
+    private func showHelp() -> Never {
+        print("Usage: LDMakeList [options]")
+        print("")
+        print(parser.helpOptions()!)
+        exit(EXIT_FAILURE)
     }
 }
