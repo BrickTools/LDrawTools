@@ -20,17 +20,18 @@ Copy the LDMakeList binary to LDraw's root directory before running it.
 
 ```
 $ LDMakeList -h
-USAGE: LDMakeList [options]
+Usage: LDMakeList [options]
 
-OPTIONS:
--d      Sort by description
--n      Sort by file name
--m      Ignore parts that moved (~ Moved to...)
--~      Ignore parts that start with tilde (~)
--_      Ignore parts that start with _
--=      Ignore parts that start with =
---type  Output format: either json or list
--h      Show this help
+Options:
+-d        Sort by description
+-n        Sort by file name
+-m        Ignore parts that moved (~ Moved to...)
+-~        Ignore parts that start with tilde (~)
+-_        Ignore parts that start with _
+-=        Ignore parts that start with =
+--type    Output format: either json or list
+--filter  Filter parts which contain the specified word (case-insensitive)
+-h        Show this help
 ```
 
 ### Examples
@@ -111,13 +112,14 @@ Copy the LDColorList binary to LDraw's root directory before running it.
 
 ```
 $ LDColorList -h
-USAGE: LDColorList [options]
+Usage: LDColorList [options]
 
-OPTIONS:
--d      Sort by description
--c      Sort by code
---type  Output format: json or list
--h      Show this help
+Options:
+-d        Sort by description
+-c        Sort by code
+--type    Output format: json or list
+--filter  Filter colors which contain the specified word (case-insensitive)
+-h        Show this help
 ```
 
 ### Examples

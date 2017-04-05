@@ -13,7 +13,7 @@ struct Application {
             CommandLineOption(name: "-d", description: "Sort by description"),
             CommandLineOption(name: "-c", description: "Sort by code"),
             CommandLineOption(name: "--type", description: "Output format: json or list", numberOfParameters: 1),
-            CommandLineOption(name: "--filter", description: "Filter color descriptions containing the specified word (case-insensitive)", numberOfParameters: 1),
+            CommandLineOption(name: "--filter", description: "Filter colors which contain the specified word (case-insensitive)", numberOfParameters: 1),
             CommandLineOption(name: "-h", description: "Show this help")
         ]
 

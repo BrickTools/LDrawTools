@@ -13,8 +13,12 @@ func hasNotMoved(part: Part) -> Bool {
     return !part.description.lowercased().contains("moved to")
 }
 
-func noPrefix(string: String) -> (Part) -> Bool {
+func noPrefix(string: String) -> PartFilter {
     return { part in !part.description.hasPrefix(string) }
+}
+
+func descriptionContains(string: String) -> PartFilter {
+    return { part in part.description.lowercased().contains(string.lowercased()) }
 }
 
 // MARK: Sort

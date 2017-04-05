@@ -17,6 +17,7 @@ struct Application {
             CommandLineOption(name: "-_", description: "Ignore parts that start with _"),
             CommandLineOption(name: "-=", description: "Ignore parts that start with ="),
             CommandLineOption(name: "--type", description: "Output format: either json or list", numberOfParameters: 1),
+            CommandLineOption(name: "--filter", description: "Filter parts which contain the specified word (case-insensitive)", numberOfParameters: 1),
             CommandLineOption(name: "-h", description: "Show this help")
         ]
 
@@ -44,6 +45,9 @@ struct Application {
                 filterFunctions.append(noPrefix(string: "="))
             case .success("--type", let parameters):
                 outputType = (parameters.first == "json") ? .json : .list
+            case .success("--filter", let parameter):
+                let descriptionFilter = descriptionContains(string: parameter.first!)
+                filterFunctions.append(descriptionFilter)
             case .success("-h", _):
                 showHelp()
             case .failure(let commandName):
