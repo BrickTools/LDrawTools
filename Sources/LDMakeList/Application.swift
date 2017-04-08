@@ -17,7 +17,8 @@ struct Application {
             CommandLineOption(name: "-_", description: "Ignore parts that start with _"),
             CommandLineOption(name: "-=", description: "Ignore parts that start with ="),
             CommandLineOption(name: "--type", description: "Output format: either json or list", numberOfParameters: 1),
-            CommandLineOption(name: "--filter", description: "Filter parts which contain the specified word (case-insensitive)", numberOfParameters: 1),
+            CommandLineOption(name: "--filter", description: "Filter out parts that don't contain the specified word (case-insensitive)", numberOfParameters: 1),
+            CommandLineOption(name: "--ldraw", description: "Set the LDraw path", numberOfParameters: 1),
             CommandLineOption(name: "-h", description: "Show this help")
         ]
 
@@ -28,6 +29,7 @@ struct Application {
         var sortFunctions: [PartSort] = []
         var filterFunctions: [PartFilter] = []
         var outputType: OutputType = .list
+        var ldrawPath: String?
 
         parser.run(arguments: arguments) { option in
             switch option {
@@ -48,6 +50,8 @@ struct Application {
             case .success("--filter", let parameter):
                 let descriptionFilter = descriptionContains(string: parameter.first!)
                 filterFunctions.append(descriptionFilter)
+            case .success("--ldraw", let parameters):
+                ldrawPath = parameters.first!
             case .success("-h", _):
                 showHelp()
             case .failure(let commandName):
@@ -59,7 +63,7 @@ struct Application {
             }
         }
 
-        let ldraw = LDraw()
+        let ldraw = LDraw(path: ldrawPath ?? ".")
         var parts = ldraw.allParts()
 
         parts = filterFunctions.reduce(parts, applyFilter)

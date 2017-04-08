@@ -13,7 +13,8 @@ struct Application {
             CommandLineOption(name: "-d", description: "Sort by description"),
             CommandLineOption(name: "-c", description: "Sort by code"),
             CommandLineOption(name: "--type", description: "Output format: json or list", numberOfParameters: 1),
-            CommandLineOption(name: "--filter", description: "Filter colors which contain the specified word (case-insensitive)", numberOfParameters: 1),
+            CommandLineOption(name: "--filter", description: "Filter out colors that don't contain the specified word (case-insensitive)", numberOfParameters: 1),
+            CommandLineOption(name: "--ldraw", description: "Set the LDraw path", numberOfParameters: 1),
             CommandLineOption(name: "-h", description: "Show this help")
         ]
 
@@ -24,6 +25,7 @@ struct Application {
         var sortFunctions: [ColorSort] = []
         var filterFunctions: [ColorFilter] = []
         var outputType: OutputType = .list
+        var ldrawPath: String?
 
         parser.run(arguments: arguments) { option in
             switch option {
@@ -36,6 +38,8 @@ struct Application {
             case .success("--filter", let parameter):
                 let descriptionFilter = descriptionContains(term: parameter.first!)
                 filterFunctions.append(descriptionFilter)
+            case .success("--ldraw", let parameters):
+                ldrawPath = parameters.first!
             case .success("-h", _):
                 showHelp()
             case .failure(let commandName):
@@ -47,7 +51,7 @@ struct Application {
             }
         }
 
-        let ldraw = LDraw()
+        let ldraw = LDraw(path: ldrawPath ?? ".")
         var colors = ldraw.allColors()
 
         colors = sortFunctions.reduce(colors, applySort)

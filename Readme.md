@@ -16,7 +16,7 @@ Simple LDMakeList implementation in Swift - with JSON support - to create a list
 
 ### Using it
 
-Copy the LDMakeList binary to LDraw's root directory before running it.
+Copy the LDMakeList binary to LDraw's root directory before running it or use the ``--ldraw`` option to specify LDraw's root directory.
 
 ```
 $ LDMakeList -h
@@ -30,7 +30,8 @@ Options:
 -_        Ignore parts that start with _
 -=        Ignore parts that start with =
 --type    Output format: either json or list
---filter  Filter parts which contain the specified word (case-insensitive)
+--filter  Filter out parts that don't contain the specified word (case-insensitive)
+--ldraw   Set the LDraw path
 -h        Show this help
 ```
 
@@ -108,7 +109,7 @@ Creates a list of [LDraw colors](http://www.ldraw.org/article/547.html).
 
 ### Using it
 
-Copy the LDColorList binary to LDraw's root directory before running it.
+Copy the LDColorList binary to LDraw's root directory before running it or use the ``--ldraw`` option to specify LDraw's root directory.
 
 ```
 $ LDColorList -h
@@ -118,7 +119,8 @@ Options:
 -d        Sort by description
 -c        Sort by code
 --type    Output format: json or list
---filter  Filter colors which contain the specified word (case-insensitive)
+--filter  Filter out colors that don't contain the specified word (case-insensitive)
+--ldraw   Set the LDraw path
 -h        Show this help
 ```
 

@@ -1,7 +1,5 @@
 import Foundation
 
-// MARK: Filter
-
-func hasDatExtension(pathString: String) -> Bool {
-    return pathString.hasSuffix(".dat")
+func hasDatExtension(pathURL: URL) -> Bool {
+    return pathURL.pathExtension == "dat"
 }
