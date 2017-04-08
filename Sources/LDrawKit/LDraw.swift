@@ -16,7 +16,7 @@ public struct LDraw {
             return parts
         }
 
-        for file in fileSystem.allFiles(at: directoryURL).filter(hasDatExtension) {
+        for file in fileSystem.allFiles(at: directoryURL).filter(hasExtension("dat")) {
             if let content = fileSystem.contentOfFile(at: file) {
                 if let part = try? Part(fileContent: content) {
                     parts.append(part)
