@@ -1,5 +1,7 @@
 # LDrawTools
 
+![LDrawTools Logo](LDrawTools.png)
+
 LDrawTools is a Swift Package that includes command line tools to list LDraw parts and colors. It includes ``LDPartList`` and ``LDColorList``.
 
 ## Building from Source
