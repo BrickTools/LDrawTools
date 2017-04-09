@@ -74,7 +74,7 @@ struct Application {
     }
 
     private func showHelp() -> Never {
-        print("Usage: LDMakeList [options]")
+        print("Usage: LDPartList [options]")
         print("")
         print(parser.helpOptions()!)
         exit(EXIT_FAILURE)

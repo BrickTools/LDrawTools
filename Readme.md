@@ -1,6 +1,6 @@
 # LDrawTools
 
-LDrawTools is a Swift Package that includes command line tools to list LDraw parts and colors. It includes ``LDMakeList`` and ``LDColorList``.
+LDrawTools is a Swift Package that includes command line tools to list LDraw parts and colors. It includes ``LDPartList`` and ``LDColorList``.
 
 ## Building from Source
 
@@ -10,17 +10,17 @@ $ cd LDrawTools
 $ swift build
 ```
 
-## LDMakeList
+## LDPartList
 
-Simple LDMakeList implementation in Swift - with JSON support - to create a list of [LDraw parts](http://www.ldraw.org/parts/latest-parts.html).
+Simple LDPartList implementation in Swift - with JSON support - to create a list of [LDraw parts](http://www.ldraw.org/parts/latest-parts.html).
 
 ### Using it
 
-Copy the LDMakeList binary to LDraw's root directory before running it or use the ``--ldraw`` option to specify LDraw's root directory.
+Copy the LDPartList binary to LDraw's root directory before running it or use the ``--ldraw`` option to specify LDraw's root directory.
 
 ```
-$ LDMakeList -h
-Usage: LDMakeList [options]
+$ LDPartList -h
+Usage: LDPartList [options]
 
 Options:
 -d        Sort by description
@@ -40,7 +40,7 @@ Options:
 Sorting by file name and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
-$ LDMakeList -n -m -~ -_ -=
+$ LDPartList -n -m -~ -_ -=
 003238a.dat                Sticker Minifig Shield Triangular with Crown on DkPink B/ground
 003238b.dat                Sticker Minifig Shield Triangular with Green Chevrons on DkGray
 003238c.dat                Sticker Minifig Shield Triangular with White Maltese Cross
@@ -56,7 +56,7 @@ $ LDMakeList -n -m -~ -_ -=
 Sorting by description and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
-$ LDMakeList -d -m -~ -_ -=
+$ LDPartList -d -m -~ -_ -=
 30103.dat                  Animal Bat
 13665.dat                  Animal Bird Crow
 2546.dat                   Animal Bird Parrot
@@ -72,7 +72,7 @@ $ LDMakeList -d -m -~ -_ -=
 Exporting list of parts as JSON, sorting by description and ignoring parts that moved and parts that start with ``~``, ``_``, and ``=``.
 
 ```
-$ LDMakeList --type json -d -m -= -~ -_
+$ LDPartList --type json -d -m -= -~ -_
 [
   {
     "description" : "Animal Bat",
@@ -99,8 +99,8 @@ $ LDMakeList --type json -d -m -= -~ -_
 Redirecting the output to file
 
 ```
-$ LDMakeList -d -m -~ -_ -= > parts.lst               # save as list
-$ LDMakeList -d -m --type json -~ -_ -= > parts.json  # save as JSON
+$ LDPartList -d -m -~ -_ -= > parts.lst               # save as list
+$ LDPartList -d -m --type json -~ -_ -= > parts.json  # save as JSON
 ```
 
 ## LDColorList
