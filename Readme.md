@@ -1,4 +1,4 @@
-# LDrawTools
+# LDrawTools [![Build Status](https://travis-ci.org/ornithocoder/LDrawTools.svg?branch=master)](https://travis-ci.org/ornithocoder/LDrawTools)
 
 ![LDrawTools Logo](LDrawTools.png)
 
