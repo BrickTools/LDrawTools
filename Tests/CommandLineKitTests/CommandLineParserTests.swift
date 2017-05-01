@@ -75,12 +75,12 @@ class CommandLineParserTests: XCTestCase {
             + "-c      Option c\n"
             + "--defg  Option defg"
 
-        XCTAssertEqual(parser?.helpOptions(), expectedHelp)
+        XCTAssertEqual(parser?.helpOptions, expectedHelp)
     }
 
     func testHelpWithoutOptions() {
         parser = CommandLineParser(options: [])
 
-        XCTAssertNil(parser?.helpOptions())
+        XCTAssertEqual(parser?.helpOptions, "")
     }
 }

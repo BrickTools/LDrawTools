@@ -75,8 +75,7 @@ struct Application {
 
     private func showHelp() -> Never {
         print("Usage: LDPartList [options]")
-        print("")
-        print(parser.helpOptions()!)
+        print("\n\(parser.helpOptions)")
         exit(EXIT_FAILURE)
     }
 }

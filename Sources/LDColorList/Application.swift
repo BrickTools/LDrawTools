@@ -63,8 +63,7 @@ struct Application {
 
     private func showHelp() -> Never {
         print("Usage: LDColorList [options]")
-        print("")
-        print(parser.helpOptions()!)
+        print("\n\(parser.helpOptions)")
         exit(EXIT_SUCCESS)
     }
 }

@@ -19,8 +19,8 @@ public struct CommandLineParser {
         }
     }
 
-    public func helpOptions() -> String? {
-        guard let longestOption = options.max(by: byOptionNameLength) else { return nil }
+    public var helpOptions: String {
+        guard let longestOption = options.max(by: byOptionNameLength) else { return "" }
 
         return options.reduce("Options:") {
             $0 + "\n" + $1.name.padding(toLength: longestOption.name.characters.count + 2, withPad: " ", startingAt: 0) + $1.description
