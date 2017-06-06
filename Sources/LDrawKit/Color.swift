@@ -1,13 +1,15 @@
 import Foundation
 
-public struct Color {
+public struct Color: Codable {
     public let name: String
     public let code: Int
     public let value: String
     public let edge: String
     public let alpha: Int?
     public let luminance: Int?
+}
 
+extension Color {
     init(string: String) throws {
         var nameString: String?
         var codeInt: Int?

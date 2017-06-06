@@ -1,12 +1,6 @@
 import Foundation
 import LDrawKit
 
-// MARK: Map
-
-func toDictionary(part: Part) -> [String : String] {
-    return ["fileName": part.fileName, "description": part.description]
-}
-
 // MARK: Filter
 
 func hasNotMoved(part: Part) -> Bool {

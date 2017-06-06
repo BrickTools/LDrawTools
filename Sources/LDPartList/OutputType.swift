@@ -10,10 +10,10 @@ enum OutputType {
             return parts.reduce("", toList)
 
         case .json:
-            let array = parts.map(toDictionary)
+            let encoder = JSONEncoder()
 
             guard
-                let data = try? JSONSerialization.data(withJSONObject: array, options: .prettyPrinted),
+                let data = try? encoder.encode(parts),
                 let string = String(data: data, encoding: .utf8)
                 else {
                     return ""

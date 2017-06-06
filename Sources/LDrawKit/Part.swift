@@ -1,10 +1,12 @@
 import Foundation
 import Extensions
 
-public struct Part {
+public struct Part: Codable {
     public let fileName: String
     public let description: String
+}
 
+extension Part {
     init(fileContent: String) throws {
         let lines = fileContent.components(separatedBy: "\r\n")
 

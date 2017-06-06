@@ -1,19 +1,6 @@
 import Foundation
 import LDrawKit
 
-// MARK: Map
-
-func toDictionary(color: Color) -> [String : Any?] {
-    return [
-        "name": color.name,
-        "code": color.code,
-        "value": color.value,
-        "edge": color.edge,
-        "alpha": color.alpha,
-        "luminance": color.luminance
-    ]
-}
-
 // MARK: Sort
 
 func byDescription(color: Color, anotherColor: Color) -> Bool {
