@@ -14,7 +14,7 @@ $ swift build
 
 ## LDPartList
 
-Simple LDPartList implementation in Swift - with JSON support - to create a list of [LDraw parts](http://www.ldraw.org/parts/latest-parts.html).
+Simple LDPartList implementation in Swift - with JSON and Property List support - to create a list of [LDraw parts](http://www.ldraw.org/parts/latest-parts.html).
 
 ### Using it
 
@@ -31,7 +31,7 @@ Options:
 -~        Ignore parts that start with tilde (~)
 -_        Ignore parts that start with _
 -=        Ignore parts that start with =
---type    Output format: either json or list
+--type    Output format: json, plist or list
 --filter  Filter out parts that don't contain the specified word (case-insensitive)
 --ldraw   Set the LDraw path
 -h        Show this help
@@ -98,6 +98,33 @@ $ LDPartList --type json -d -m -= -~ -_
 ...
 ```
 
+Exporting the same list of parts as Property List.
+
+```
+$ LDPartList --type plist -d -m -= -~ -_
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>description</key>
+		<string>Animal Bat</string>
+		<key>fileName</key>
+		<string>30103.dat</string>
+	</dict>
+	<dict>
+		<key>description</key>
+		<string>Animal Bird Crow</string>
+		<key>fileName</key>
+		<string>13665.dat</string>
+	</dict>
+	<dict>
+		<key>description</key>
+		<string>Animal Bird Parrot</string>
+		<key>fileName</key>
+...
+```
+
 Redirecting the output to file
 
 ```
@@ -120,7 +147,7 @@ Usage: LDColorList [options]
 Options:
 -d        Sort by description
 -c        Sort by code
---type    Output format: json or list
+--type    Output format: json, plist or list
 --filter  Filter out colors that don't contain the specified word (case-insensitive)
 --ldraw   Set the LDraw path
 -h        Show this help
@@ -169,6 +196,33 @@ $ LDColorList --type json
   {
     "name" : "Green",
     "value" : "#257A3E",
+...
+```
+
+Exporting colors as Property List.
+
+```
+$ LDColorList --type plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>code</key>
+		<integer>0</integer>
+		<key>edge</key>
+		<string>#595959</string>
+		<key>name</key>
+		<string>Black</string>
+		<key>value</key>
+		<string>#05131D</string>
+	</dict>
+	<dict>
+		<key>code</key>
+		<integer>1</integer>
+		<key>edge</key>
+		<string>#333333</string>
+		<key>name</key>
 ...
 ```
 

@@ -16,7 +16,7 @@ struct Application {
             CommandLineOption(name: "-~", description: "Ignore parts that start with tilde (~)"),
             CommandLineOption(name: "-_", description: "Ignore parts that start with _"),
             CommandLineOption(name: "-=", description: "Ignore parts that start with ="),
-            CommandLineOption(name: "--type", description: "Output format: either json or list", numberOfParameters: 1),
+            CommandLineOption(name: "--type", description: "Output format: json, plist or list", numberOfParameters: 1),
             CommandLineOption(name: "--filter", description: "Filter out parts that don't contain the specified word (case-insensitive)", numberOfParameters: 1),
             CommandLineOption(name: "--ldraw", description: "Set the LDraw path", numberOfParameters: 1),
             CommandLineOption(name: "-h", description: "Show this help")
@@ -46,7 +46,7 @@ struct Application {
             case .success("-=", _):
                 filterFunctions.append(noPrefix(string: "="))
             case .success("--type", let parameters):
-                outputType = (parameters.first == "json") ? .json : .list
+                outputType = OutputType(rawValue: parameters.first!) ?? .list
             case .success("--filter", let parameter):
                 let descriptionFilter = descriptionContains(string: parameter.first!)
                 filterFunctions.append(descriptionFilter)

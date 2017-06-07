@@ -1,8 +1,8 @@
 import Foundation
 import LDrawKit
 
-enum OutputType {
-    case list, json
+enum OutputType: String {
+    case list, json, plist
 
     func convert(_ parts: [Part]) -> String {
         switch self {
@@ -11,6 +11,20 @@ enum OutputType {
 
         case .json:
             let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+
+            guard
+                let data = try? encoder.encode(parts),
+                let string = String(data: data, encoding: .utf8)
+                else {
+                    return ""
+            }
+
+            return string
+
+        case .plist:
+            let encoder = PropertyListEncoder()
+            encoder.outputFormat = .xml
 
             guard
                 let data = try? encoder.encode(parts),
