@@ -7,7 +7,7 @@ public struct Part: Codable {
 }
 
 extension Part {
-    init(fileContent: String) throws {
+    init?(fileContent: String) {
         let lines = fileContent.components(separatedBy: "\r\n")
 
         guard
@@ -15,7 +15,7 @@ extension Part {
             let titleLocation = firstLine.range(of: "0 "),
             let secondLine = lines[safe: 1]
             else {
-                throw InitError.missingExpectedField
+                return nil
         }
 
         description = firstLine.replacingCharacters(in: titleLocation, with: "").condensed()

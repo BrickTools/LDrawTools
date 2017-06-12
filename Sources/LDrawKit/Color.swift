@@ -10,7 +10,7 @@ public struct Color: Codable {
 }
 
 extension Color {
-    init(string: String) throws {
+    init?(string: String) {
         var nameString: String?
         var codeInt: Int?
         var valueString: String?
@@ -45,7 +45,7 @@ extension Color {
             let value = valueString,
             let edge = edgeString
             else {
-                throw InitError.missingExpectedField
+                return nil
         }
 
         self.name = name

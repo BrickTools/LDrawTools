@@ -10,39 +10,18 @@ public struct LDraw {
     }
 
     public func allParts() -> [Part] {
-        var parts: [Part] = []
+        guard let directoryURL = URL(string: "parts", relativeTo: ldrawURL) else { return [] }
 
-        guard let directoryURL = URL(string: "parts", relativeTo: ldrawURL) else {
-            return parts
-        }
-
-        for file in fileSystem.allFiles(at: directoryURL).filter(hasExtension("dat")) {
-            if let content = fileSystem.contentOfFile(at: file) {
-                if let part = try? Part(fileContent: content) {
-                    parts.append(part)
-                }
-            }
-        }
-
-        return parts
+        return fileSystem.allFiles(at: directoryURL)
+            .filter(hasExtension("dat"))
+            .flatMap { fileSystem.contentOfFile(at: $0).flatMap(Part.init) }
     }
 
     public func allColors() -> [Color] {
-        var colors: [Color] = []
+        guard let fileURL = URL(string: "LDConfig.ldr", relativeTo: ldrawURL) else { return [] }
 
-        guard
-            let fileURL = URL(string: "LDConfig.ldr", relativeTo: ldrawURL),
-            let data = fileSystem.contentOfFile(at: fileURL)
-            else {
-                return colors
-        }
-
-        for line in data.components(separatedBy: .newlines) {
-            if let color = try? Color(string: line) {
-                colors.append(color)
-            }
-        }
-
-        return colors
+        return fileSystem.contentOfFile(at: fileURL)
+            .flatMap { $0.components(separatedBy: .newlines) }?
+            .flatMap(Color.init) ?? []
     }
 }
